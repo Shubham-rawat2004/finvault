@@ -1,0 +1,26 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "java -jar target/bank-management-0.0.1-SNAPSHOT.jar"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[[services]]
+name = "bank-management-app"
+source = { type = "local" }
+[services.env]
+SPRING_PROFILES_ACTIVE = "production"
+
+[[services]]
+name = "mysql-database"
+image = "mysql:8.0"
+[services.env]
+MYSQL_ROOT_PASSWORD = "Shub@2004"
+MYSQL_DATABASE = "bankdb"
+[[services.ports]]
+port = 3306
+protocol = "TCP"
+
+[environments]
+  [environments.production]

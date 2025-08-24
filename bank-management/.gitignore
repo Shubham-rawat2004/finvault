@@ -31,3 +31,18 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Docker ###
+# Docker build artifacts (we want to keep these files, so don't ignore them)
+# Dockerfile
+# .dockerignore
+# docker-compose.yml
+# docker-compose.*.yml
+
+# Docker volumes
+data/
+mysql_data/
+
+# Temporary files
+*.tmp
+*.temp

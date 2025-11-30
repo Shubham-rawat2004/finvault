@@ -1,4 +1,5 @@
 package com.bankManagement.bank_management.controller;
+
 import com.bankManagement.bank_management.model.Customer;
 import com.bankManagement.bank_management.service.CustomerService;
 import jakarta.validation.Valid;
@@ -9,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import  java.util.List;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -37,6 +38,7 @@ public class CustomerController {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         return customerService.getAllCustomersPaginated(pageable);
     }
+
     @GetMapping
     public List<Customer> getAllCustomer() {
         return customerService.getAllCustomers();
@@ -54,22 +56,26 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-public String deleteCustomer(@PathVariable Long id){
+    public String deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
-        return "Customer deleted Successfully with id "+id;
+        return "Customer deleted Successfully with id " + id;
     }
+
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "Customer Controller  is working!";
     }
+
     @GetMapping("/search")
-    public List<Customer> searchByName(@RequestParam String name){
+    public List<Customer> searchByName(@RequestParam String name) {
         return customerService.searchCustomerByName(name);
     }
+
     @GetMapping("/email")
-    public Optional<Customer> getByEmail(@RequestParam String email){
+    public Optional<Customer> getByEmail(@RequestParam String email) {
         return customerService.getCustomerByEmail(email);
     }
+
     @PostMapping("/{id}/deposit")
     public Customer deposit(@PathVariable Long id, @RequestParam double amount) {
         return customerService.deposit(id, amount);

@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -28,7 +30,8 @@ public class Customer {
     private String password; // Added password field
 
     // Default constructor
-    public Customer() {}
+    public Customer() {
+    }
 
     // Parameterized constructor
     public Customer(Long id, String name, String email, double balance, String password) {
@@ -79,4 +82,12 @@ public class Customer {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @OneToMany(mappedBy = "payer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RecurringPayment> recurringPayments;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Transaction> transactions;
+
+
 }

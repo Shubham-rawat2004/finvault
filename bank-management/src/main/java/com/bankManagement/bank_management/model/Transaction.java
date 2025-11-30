@@ -40,4 +40,6 @@ public class Transaction {
     public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
     public Customer getCustomer() { return customer; }
     public void setCustomer(Customer customer) { this.customer = customer; }
+
+
 }
